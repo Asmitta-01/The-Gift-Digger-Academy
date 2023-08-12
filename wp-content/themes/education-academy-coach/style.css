@@ -21,91 +21,156 @@ Education Academy Coach WordPress Theme is child theme of Education Insight Word
 Education Insight WordPress Theme is distributed under the terms of the GNU GPL
 */
 /*scrollup*/
-.scrollup{
-    background: #21ad95!important;
+.scrollup {
+    background: #162039 !important;
 }
+
 /*post-format*/
-.entry-content .quotepost p{
-    color: #21ad95;
+.entry-content .quotepost p {
+    color: #162039;
 }
-#Category-section pre.wp-block-verse{
-    border: 5px solid black!important;
-    color:#21ad95;   
+
+#Category-section pre.wp-block-verse {
+    border: 5px solid black !important;
+    color: #162039;
 }
+
 /* Accessibility */
 /* Text meant only for screen readers. */
 .screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
-  word-wrap: normal !important;
-  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+    /* Many screen reader and browser combinations announce broken words as they would appear visually. */
 }
+
 .screen-reader-text:focus {
-  background-color: #f1f1f1;
-  border-radius: 3px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-  clip: auto !important;
-  clip-path: none;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000;
-  /* Above WP toolbar. */
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar. */
 }
+
 /* Do not show the outline on the skip link target. */
 #content[tabindex="-1"]:focus {
-  outline: 0;
+    outline: 0;
 }
-.bypostauthor > .comment-body > .comment-meta > .comment-author .avatar {
+
+.bypostauthor>.comment-body>.comment-meta>.comment-author .avatar {
     border: 1px solid #323232;
     padding: 2px;
 }
-body,h1,h2,h3,h4,h5,h6,.logo h1, .site-title, .site-title a{
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo h1,
+.site-title,
+.site-title a {
     font-family: 'Mulish', sans-serif;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 800 !important;
     letter-spacing: 0;
 }
-.logo h1 a,h1, h2, h3, h4, h5, h6,#Category-section h3 a,#sidebar h3,.copyright{
+
+.logo h1 a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#Category-section h3 a,
+#sidebar h3,
+.copyright {
     color: #17191b;
 }
-#sidebar h3{
+
+#sidebar h3 {
     border-color: #17191b;
 }
-.woocommerce ul.products li.product .onsale, .woocommerce span.onsale,.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt,button, input[type="button"], input[type="submit"],.site-footer .search-form .search-submit,.prev.page-numbers, .next.page-numbers,.page-numbers.current,button.search-submit,nav.woocommerce-MyAccount-navigation ul li,a.more-link,.home-btn a,.gb_nav_menu ul ul a:hover,#slider .carousel-control-next-icon:hover, #slider .carousel-control-prev-icon:hover{
+
+.woocommerce ul.products li.product .onsale,
+.woocommerce span.onsale,
+.woocommerce #respond input#submit,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+button,
+input[type="button"],
+input[type="submit"],
+.site-footer .search-form .search-submit,
+.prev.page-numbers,
+.next.page-numbers,
+.page-numbers.current,
+button.search-submit,
+nav.woocommerce-MyAccount-navigation ul li,
+a.more-link,
+.home-btn a,
+.gb_nav_menu ul ul a:hover,
+#slider .carousel-control-next-icon:hover,
+#slider .carousel-control-prev-icon:hover {
     background: #fe4c1c;
 }
+
 .top_header {
-    background: #21ad95;
+    background: #162039;
     text-align: left;
     font-size: 16px;
 }
-.links,.admision-btn,.gb_navigation {
+
+.links,
+.admision-btn,
+.gb_navigation {
     text-align: right;
 }
-.links i,.top_header a{
-	margin: 0;
+
+.links i,
+.top_header a {
+    margin: 0;
 }
+
 span.account {
     margin-left: 15px;
 }
+
 .logo {
     text-align: left;
     position: static;
@@ -114,131 +179,203 @@ span.account {
     border-radius: 0;
     background: transparent;
 }
+
 .gb_nav_menu li a {
     color: #17191b;
     font-size: 13px;
     font-weight: bold;
     letter-spacing: 0;
 }
-.gb_nav_menu ul li a:active, .gb_nav_menu ul li a:hover {
+
+.gb_nav_menu ul li a:active,
+.gb_nav_menu ul li a:hover {
     color: #fe4c1c;
 }
-.gb_nav_menu ul ul,.scrollup,.scrollup.is-active:hover, .scrollup.is-active:focus,#sidebar .tagcloud a:hover, .site-footer .tagcloud a:hover,.woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, a.added_to_cart.wc-forward:hover,.admision-btn a:hover,hr.down,#slider .carousel-control-next-icon, #slider .carousel-control-prev-icon,.middle-sec-inner{
-    background: #21ad95;
+
+.gb_nav_menu ul ul,
+.scrollup,
+.scrollup.is-active:hover,
+.scrollup.is-active:focus,
+#sidebar .tagcloud a:hover,
+.site-footer .tagcloud a:hover,
+.woocommerce #respond input#submit:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit.alt:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover,
+a.added_to_cart.wc-forward:hover,
+.admision-btn a:hover,
+hr.down,
+#slider .carousel-control-next-icon,
+#slider .carousel-control-prev-icon,
+.middle-sec-inner {
+    background: #162039;
 }
-#Category-section .postbox.smallpostimage:hover h3 a,a,#sidebar caption,#sidebar td,#sidebar select,.site-footer .widget-area a:hover,a.showcoupon, .woocommerce-message::before {
-	color: #21ad95;
+
+#Category-section .postbox.smallpostimage:hover h3 a,
+a,
+#sidebar caption,
+#sidebar td,
+#sidebar select,
+.site-footer .widget-area a:hover,
+a.showcoupon,
+.woocommerce-message::before {
+    color: #162039;
 }
-.site-footer .tagcloud a:hover,.links i:hover{
-	color: #fff;
+
+.site-footer .tagcloud a:hover,
+.links i:hover {
+    color: #fff;
 }
+
 .sticky {
-    border-left: solid 4px #21ad95;
+    border-left: solid 4px #162039;
 }
-.wp-block-quote:not(.is-large):not(.is-style-large), blockquote,.wp-block-quote:not(.is-large):not(.is-style-large){
-    border-color: #21ad95;
+
+.wp-block-quote:not(.is-large):not(.is-style-large),
+blockquote,
+.wp-block-quote:not(.is-large):not(.is-style-large) {
+    border-color: #162039;
 }
-.admision-btn a,.slide-btn a {
+
+.admision-btn a,
+.slide-btn a {
     padding: 15px;
     background: #fe4c1c;
     color: #fff;
     font-weight: bold;
     font-size: 15px;
 }
-.slide-btn a{
-    background: #21ad95;
+
+.slide-btn a {
+    background: #162039;
 }
+
 .admision-btn {
     margin: 0;
 }
+
 #slider {
     background: #fff;
 }
-#slider .carousel-caption{
+
+#slider .carousel-caption {
     right: 50%;
 }
-.links i{
+
+.links i {
     background: #fff !important;
     color: #17191b;
     padding: 10px 0;
     font-size: 12px;
 }
-.links i:hover,.mid-inner-box1, .mid-inner-box2, .mid-inner-box3, .mid-inner-box4{
+
+.links i:hover,
+.mid-inner-box1,
+.mid-inner-box2,
+.mid-inner-box3,
+.mid-inner-box4 {
     background: #fe4c1c !important;
 }
-#course-cat .box,#course-cat .box h4{
+
+#course-cat .box,
+#course-cat .box h4 {
     padding: 0;
 }
-#course-cat{
+
+#course-cat {
     text-align: left;
 }
+
 .box-inner h5 {
     font-size: 25px;
-    color: #21ad95;
+    color: #162039;
     margin-bottom: 15px;
 }
+
 #course-cat .box h4 a {
     color: #403b66;
     font-size: 22px;
     font-weight: 700;
 }
+
 #course-cat .box {
     box-shadow: 0 0 15px 5px #dfdfdf;
 }
-.middle-sec-inner h4 a,.middle-sec-box h3 a{
+
+.middle-sec-inner h4 a,
+.middle-sec-box h3 a {
     font-weight: bold;
 }
 
-@media screen and (max-width: 720px) and (min-width: 320px){
-    .logo{
+@media screen and (max-width: 720px) and (min-width: 320px) {
+    .logo {
         padding: 15px 0;
     }
-    .top_header,.links,.admision-btn,
-    .logo,#slider .inner_carousel h2,#slider .carousel-caption {
+
+    .top_header,
+    .links,
+    .admision-btn,
+    .logo,
+    #slider .inner_carousel h2,
+    #slider .carousel-caption {
         text-align: center;
     }
+
     #slider .carousel-caption {
         right: 12%;
         left: 12%;
     }
-    #slider .inner_carousel p{
+
+    #slider .inner_carousel p {
         display: none;
     }
-    .gb_navigation{
+
+    .gb_navigation {
         text-align: left;
     }
-    .gb_nav_menu ul ul{
+
+    .gb_nav_menu ul ul {
         background: #1a1a1a;
     }
+
     .wrap_figure.fixed {
-    position: static;
-}
-}
-@media screen and (min-width: 768px) and (max-width: 1000px)  {
-    #slider .carousel-caption{
-      right: 30%;
+        position: static;
     }
-    .gb_navigation{
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+    #slider .carousel-caption {
+        right: 30%;
+    }
+
+    .gb_navigation {
         text-align: left;
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1000px)  {
-    #slider .carousel-caption{
-      right: 30%;
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+    #slider .carousel-caption {
+        right: 30%;
     }
-    .gb_navigation{
+
+    .gb_navigation {
         text-align: left;
     }
 }
 
-@media screen and (min-width: 1001px) and (max-width: 1199px)  {
-    .admision-btn a{
+@media screen and (min-width: 1001px) and (max-width: 1199px) {
+    .admision-btn a {
         padding: 10px 5px;
     }
+
     #slider .carousel-caption {
         right: 25%;
     }
+
     #slider .inner_carousel h2 {
         font-size: 35px;
     }
