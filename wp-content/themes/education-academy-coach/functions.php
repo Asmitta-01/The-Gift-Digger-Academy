@@ -16,7 +16,7 @@ if (!function_exists('education_academy_coach_enqueue_styles')) :
   {
     wp_enqueue_style('education-insight-style-parent', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('education-academy-coach-style', get_stylesheet_directory_uri() . '/style.min.css', array('education-insight-style-parent'), '1.0.0');
-    wp_enqueue_style('education-academy-coach-style', get_stylesheet_directory_uri() . '/my-style.min.css', array('education-insight-style-parent'), '1.0.0');
+    wp_enqueue_style('education-academy-coach-style-', get_stylesheet_directory_uri() . '/my-style.min.css', array('education-insight-style-parent'), '1.0.0');
 
     // Theme Customize CSS.
     require get_parent_theme_file_path('inc/extra_customization.php');

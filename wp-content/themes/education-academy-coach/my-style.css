@@ -1,3 +1,33 @@
-body {
-    color: inherit;
+:root {
+    --ga-orange: #fe4c1c;
+}
+
+.gspb_iconsList__item {
+    color: white;
+}
+
+.text-decoration-none {
+    text-decoration: none !important;
+}
+
+.orange-color {
+    color: var(--ga-orange);
+}
+
+.grid-post-meta-container {
+    background: #eee;
+    border-radius: 10px;
+}
+
+nav#top_gb_menu ul li a {
+    font-size: 17px;
+}
+
+.current_page_parent a,
+.current_page_item a {
+    color: var(--ga-orange) !important;
+}
+
+.border-bottom-orange {
+    border-bottom: 2px solid var(--ga-orange);
 }
