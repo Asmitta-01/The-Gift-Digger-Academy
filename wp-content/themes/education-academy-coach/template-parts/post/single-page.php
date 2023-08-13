@@ -6,14 +6,19 @@
  * @subpackage Education Insight
  * @since 1.0
  */
+
+if (get_post_type() == 'tgd_course') :
+	$amount = floatval(get_post_meta(get_the_ID(), 'tgd_course_amount', true));
+	$bought = rand(0, 1) == 0;
 ?>
-<?php if (get_post_type() == 'tgd_course') : ?>
 	<nav class="breadcrumb">
 		<a class="breadcrumb-item font-weight-bold text-decoration-none" href="<?= get_home_url() ?>">Accueil</a>
 		<a class="breadcrumb-item font-weight-bold text-decoration-none" href="#">Formations</a>
 		<span class="breadcrumb-item active" aria-current="page"><?php the_title() ?></span>
 	</nav>
-<?php endif; ?>
+<?php
+endif;
+?>
 
 <div id="single-post-section" class="single-post-page entry-content">
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -54,7 +59,28 @@
 					<?php endif; ?>
 				</div>
 				<p><?php the_content(); ?></p>
-				<?php if (get_post_type() == 'tgd_course') : ?>
+				<div class="">
+					<?php if (!$bought) : ?>
+						<div class="d-flex justify-content-between alert alert-info">
+							<div>
+								<span>Coût de la formation</span><br>
+								<span>Frais supplémentaires (<?= POURCENTAGE_GISEL_PAY ?>%)</span><br>
+								<hr>
+								<span class="font-weight-bold">Total</span>
+							</div>
+							<div class="font-weight-bold">
+								<span>XAF <?= $amount ?></span><br>
+								<span>XAF <?= $amount * POURCENTAGE_GISEL_PAY / 100 ?></span>
+								<hr>
+								<span>XAF <?= $amount * (1 + POURCENTAGE_GISEL_PAY / 100) ?></span>
+							</div>
+						</div>
+						<button id="payment-btn">Acheter</button>
+					<?php else : ?>
+						<div class="alert grid-post-meta-container">Acheté</div>
+					<?php endif; ?>
+				</div>
+				<?php if (get_post_type() == 'tgd_course' && $bought) : ?>
 					<?php if (!empty(get_post_meta(get_the_ID(), 'tgd_course_videos'))) : ?>
 						<div class="mt-5">
 							<h2 class="border-bottom-orange pb-2">Videos</h2>
@@ -82,3 +108,16 @@
 		</div>
 	</div>
 </div>
+
+<?php
+if (!$bought) {
+	echo get_js_payment_code(
+		[
+			'description' => "Achat de la formation: " . get_the_title(),
+			'label' => "Achat d'une formation",
+			'choice' => get_the_title()
+		],
+		floatval($amount ?? 0) * (1 + POURCENTAGE_GISEL_PAY / 100)
+	);
+}
+?>

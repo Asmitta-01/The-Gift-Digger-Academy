@@ -205,7 +205,7 @@ function tgd_meta_callback_courses($post)
                         <tr id="meta-<?= $c ?>">
                             <td class="left">
                                 <span><?= '#' . $c ?></span>
-                                <input type="text" name="tgd_course_titles[]" value="<?php echo esc_attr($video['title']); ?>" placeholder="<?= esc_html_e('Video title', 'education-academy-coach') ?>" />
+                                <input type="text" name="tgd_course_titles[]" value="<?php echo esc_attr(@$video['title']); ?>" placeholder="<?= esc_html_e('Video title', 'education-academy-coach') ?>" />
                             </td>
                             <td class="left">
                                 <input type="file" accept="video/*" name="tgd_course_videos[]">
@@ -383,6 +383,92 @@ add_shortcode('guests-only', function ($atts, $content = '') {
 
     return;
 });
+
+define("POURCENTAGE_GISEL_PAY", 4.5);
+define('GISELPAY_TOKEN', "82WsoGGYGWkj1xo.NzRPV.0cM4+YhY20230426");
+function get_js_payment_code(array $text, float $price = null)
+{
+    require_once "utilities.php";
+    $reference = "ph-" . uuid_v4();
+
+    ob_start();
+?>
+
+    <script src='https://terminal.giselpay.com/live/start?v=1.0'></script>
+    <script>
+        let btn = document.getElementById('payment-btn');
+        let price = <?= $price ?? 500000 ?>;
+        let choice = "<?= $text['choice'] ?>";
+
+        let elt = document.createElement('i');
+        elt.classList = "fas fa-spinner fa-spin orange-color px-2";
+        const enableBtn = function() {
+            if (typeof btn !== 'undefined' && typeof elt != 'undefined') {
+                btn.removeAttribute('disabled')
+                btn.parentElement.removeChild(elt)
+            }
+        }
+
+        btn.addEventListener('click', function(event) {
+            btn.setAttribute('disabled', 'disabled')
+            btn.parentElement.append(elt)
+
+            <?php if ($price == null) : ?>
+                let checked = Array.from(document.querySelectorAll("[data-po-value]"))
+                    .filter(input => input.checked)
+                if (checked.length > 0) {
+                    price = parseInt(checked[0].attributes['data-po-value'].value) *
+                        (1 + parseFloat(<?= POURCENTAGE_GISEL_PAY ?>) / 100)
+                    choice = checked[0].value
+                }
+            <?php endif; ?>
+
+            console.clear()
+            jQuery.ajax({
+                type: "POST",
+                url: "https://app.giselpay.com/api/v1/payment",
+                data: {
+                    "user_name": "<?= wp_get_current_user()->display_name ?>",
+                    "amount": price,
+                    "description": "<?= $text['description'] ?>",
+                    "token": "<?= GISELPAY_TOKEN ?>",
+                    "reference_order": "<?= $reference ?>"
+                },
+                success: function(response) {
+                    response = JSON.parse(response)
+                    if (response.statut == "ok")
+                        init_giselpay(response.reference)
+                    else
+                        enableBtn()
+                },
+                error: enableBtn
+            });
+        })
+        window.addEventListener("message", (e) => {
+            let data = e.data;
+            if (data.close_panel != undefined) {
+                let ref = data.ref;
+                const datas = {
+                    "action": "check_payment",
+                    "security": "<?= wp_create_nonce('phenix-payment') ?>",
+                    "reference": ref,
+                    "ph-reference": "<?= $reference ?>",
+                    "buyer": "<?= md5("phenix-" . get_current_user_id()) ?>",
+                    "reason": {
+                        "label": "<?= $text['label'] ?>",
+                        "choice": choice
+                    },
+                    "amount": price
+                }
+                console.log(datas)
+                enableBtn()
+            }
+        });
+    </script>
+
+<?php
+    return ob_get_clean();
+}
 
 add_shortcode('video-chat', function ($atts, $content = '') {
     if (!is_user_logged_in() && wp_get_current_user()->courses == null) {

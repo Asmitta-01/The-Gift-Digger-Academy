@@ -31,3 +31,7 @@ nav#top_gb_menu ul li a {
 .border-bottom-orange {
     border-bottom: 2px solid var(--ga-orange);
 }
+
+.site-footer .widget-area a:hover {
+    color: var(--ga-orange);
+}
