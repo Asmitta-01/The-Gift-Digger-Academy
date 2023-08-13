@@ -35,3 +35,11 @@ nav#top_gb_menu ul li a {
 .site-footer .widget-area a:hover {
     color: var(--ga-orange);
 }
+
+.copyright {
+    padding-top: 3rem;
+}
+
+#jaas-container {
+    height: 520px;
+}

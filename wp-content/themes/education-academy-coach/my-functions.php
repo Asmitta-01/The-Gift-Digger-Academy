@@ -116,7 +116,7 @@ add_shortcode('grid-courses', function ($atts) {
                         </div>
                         <p class="card-text"><?= substr(get_the_excerpt($post), 0, 170) ?></p>
                         <div class="link-more">
-                            <a href="<?= get_permalink($post) ?>" class="more-link" style="text-decoration: none;">Read more</a>
+                            <a href="<?= get_permalink($post) ?>" class="more-link" style="text-decoration: none;">Lire la suite</a>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -470,6 +470,8 @@ function get_js_payment_code(array $text, float $price = null)
     return ob_get_clean();
 }
 
+define('JAAS_API_ID', "vpaas-magic-cookie-d3d26ab9b279487eb7a8f213fb7e0537");
+define('JAAS_API_KEY', "vpaas-magic-cookie-d3d26ab9b279487eb7a8f213fb7e0537/045c7d");
 add_shortcode('video-chat', function ($atts, $content = '') {
     if (!is_user_logged_in() && wp_get_current_user()->courses == null) {
         return;
@@ -487,8 +489,8 @@ add_shortcode('video-chat', function ($atts, $content = '') {
                 <div id="jaas-container" style="background-color: #162039; color: white">
                     <?php if (in_array('subscriber', wp_get_current_user()->roles)) : ?>
                         <div class="container p-5">
-                            <h1 class="text-white">Enter a room</h1>
-                            <p>Check for an active mentor in the list below and enter his room.</p>
+                            <h1 class="text-white">Rejoindre une salle</h1>
+                            <p>Cherchez un formateur actif dans la liste ci-dessous et entrez dans sa salle.</p>
                             <svg xmlns="http://www.w3.org/2000/svg" height="5em" class="mt-3" viewBox="0 0 576 512" style="fill: white;">
                                 <path d="M544 416L32 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l512 0c17.7 0 32-14.3 32-32s-14.3-32-32-32zm22.6-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L480 274.7 480 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 210.7-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96zm-320-45.3c-12.5-12.5-32.8-12.5-45.3 0L160 274.7 160 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 210.7L54.6 233.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3z" />
                             </svg>
@@ -506,7 +508,7 @@ add_shortcode('video-chat', function ($atts, $content = '') {
             </div>
         </div>
     </div>
-    <script src='https://8x8.vc/vpaas-magic-cookie-d3d26ab9b279487eb7a8f213fb7e0537/external_api.js' async></script>
+    <script src='https://8x8.vc/<?= JAAS_API_ID ?>/external_api.js' async></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script>
         const parentContainer = document.getElementById('jaas-container');
@@ -514,17 +516,28 @@ add_shortcode('video-chat', function ($atts, $content = '') {
         <?php if (in_array('mentor', wp_get_current_user()->roles)) : ?>
             window.onload = () => {
                 const options = {
-                    roomName: "vpaas-magic-cookie-d3d26ab9b279487eb7a8f213fb7e0537/<?= ucwords(mb_strtolower(wp_get_current_user()->display_name)) ?>Room",
+                    roomName: "<?= JAAS_API_ID . '/' . ucwords(mb_strtolower(wp_get_current_user()->display_name)) ?>Room<?= md5(get_current_user_id()) ?>",
                     parentNode: parentContainer,
                     lang: 'fr',
                     readOnlyName: true,
                     jwt: "<?= $token ?>"
                 };
                 const api = new JitsiMeetExternalAPI("8x8.vc", options);
+                api.addEventListener('participantJoined', function(data) {
+                    const temp_id = <?= get_current_user_id() ?>;
+                    if (temp_id == data.id) {
+                        console.log('Live')
+                    }
+                });
+                api.addEventListener('readyToClose', function() {
+                    parentContainer.innerHTML = content;
+                    console.log('Over')
+                    alert("Rechargez la page si vous voulez relancer la seance.")
+                });
             }
         <?php else : ?>
             const options = {
-                roomName: "vpaas-magic-cookie-d3d26ab9b279487eb7a8f213fb7e0537/",
+                roomName: "<?= JAAS_API_ID ?>/",
                 parentNode: parentContainer,
                 lang: 'fr',
                 readOnlyName: true,
@@ -538,7 +551,7 @@ add_shortcode('video-chat', function ($atts, $content = '') {
             };
             Array.from(document.querySelectorAll('.mentor-block')).forEach(function(element) {
                 element.addEventListener('click', function() {
-                    options.roomName += element.getAttribute('data-mentor-name') + 'Room';
+                    options.roomName += element.getAttribute('data-mentor-name') + 'Room<?= md5(get_current_user_id()) ?>';
                     parentContainer.innerHTML = "";
                     const api = new JitsiMeetExternalAPI("8x8.vc", options);
                     api.addEventListener('readyToClose', function() {
